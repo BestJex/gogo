@@ -1,8 +1,8 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { SearchResult, LintResult } from '../resources';
+import { LintResult, SearchResult } from './interfaces';
 import { Util } from '../util';
 
 const endpoint = 'https://176.122.157.231:5000'
@@ -10,10 +10,7 @@ const endpoint = 'https://176.122.157.231:5000'
 @Injectable({
   providedIn: 'root'
 })
-export class SearchService implements OnInit {
-  ngOnInit(): void {
-    console.log('SearchService init');
-  }
+export class SearchService{
 
   constructor(
     private httpClient: HttpClient
