@@ -1,16 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { LintResult, SearchResult } from './interfaces';
 import { Util } from '../util';
+import { LintResult, SearchResult } from './interfaces';
 
-const endpoint = 'https://176.122.157.231:5000'
+const server = 'https://176.122.157.231:5000'
 
 @Injectable({
   providedIn: 'root'
 })
-export class SearchService{
+export class SearchService {
 
   constructor(
     private httpClient: HttpClient
@@ -21,9 +21,9 @@ export class SearchService{
    * @param keyword 关键词
    * @param page 页码
    */
-  public search(keyword: string, page: number): Observable<SearchResult> {
+  search(keyword: string, page: number): Observable<SearchResult> {
     return this.httpClient.get<SearchResult>(
-      `${endpoint}/api/search?q=${keyword}&p=${page}`
+      `${server}/api/search?q=${keyword}&p=${page}`
     ).pipe(
       catchError(Util.handleError(
         () => { }, null
@@ -31,9 +31,13 @@ export class SearchService{
     )
   }
 
-  public lint(keyword: string): Observable<LintResult> {
+  /**
+   * 根据关键词提示
+   * @param keyword 关键词
+   */
+  lint(keyword: string): Observable<LintResult> {
     return this.httpClient.get<LintResult>(
-      `${endpoint}/api/lint?q=${keyword}`
+      `${server}/api/lint?q=${keyword}`
     ).pipe(
       catchError(Util.handleError(
         () => { }, null
