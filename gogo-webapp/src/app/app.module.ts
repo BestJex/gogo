@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { IndexComponent } from './index/index.component';
 import { SearchService } from './services/search.service';
+import { Logger } from './shared/logger.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SearchService } from './services/search.service';
     AppRoutingModule
   ],
   providers: [
-    SearchService
+    SearchService,
+    Logger
   ],
   bootstrap: [IndexComponent]
 })
